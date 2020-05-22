@@ -1,0 +1,129 @@
+﻿@model Aircraft_Core_App.Models.Application
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<div>
+    <h1><input class="airlineCode" type="text" placeholder="Airline Code...."><button id="myInput">Filter Result</button></h1>
+    <h2>Onward Result</h2>
+    <table class="onwardTable">
+        <thead>
+            <tr>
+                <th>Origin</th>
+                <th>Destination</th>
+                <th>Onward_Date</th>
+                <th>Return_Date</th>
+                <th>Airline</th>
+                <th>Flight_Number</th>
+                <th>Flight_Type</th>
+            </tr>
+        </thead>
+        <tbody id="myTable">
+            @foreach (var item in Model.flightDetails)
+            {
+                <tr>
+                    <td>
+                        @item.flightSegments[0].origin
+                    </td>
+                    <td>
+                        @item.flightSegments[0].destination
+                    </td>
+                    <td>
+                        @item.flightSegments[0].onwardDate
+                    </td>
+                    <td>
+                        @item.flightSegments[0].returnDate
+                    </td>
+                    <td>
+                        @item.flightSegments[0].airline
+                    </td>
+                    <td>
+                        @item.flightSegments[0].flightNumber
+                    </td>
+                    <td>
+                        @item.flightSegments[0].flightType
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    </div>
+<div>
+        <h2>Return Result</h2>
+    <table class="returnTable">
+        <thead>
+            <tr>
+                <th>Origin</th>
+                <th>Destination</th>
+                <th>Onward_Date</th>
+                <th>Return_Date</th>
+                <th>Airline</th>
+                <th>Flight_Number</th>
+                <th>Flight_Type</th>
+            </tr>
+        </thead>
+        <tbody id="myTable">
+            @foreach (var item in Model.flightDetails)
+            {
+                <tr>
+                    <td>
+                        @item.flightSegments[1].origin
+                    </td>
+                    <td>
+                        @item.flightSegments[1].destination
+                    </td>
+                    <td>
+                        @item.flightSegments[1].onwardDate
+                    </td>
+                    <td>
+                        @item.flightSegments[1].returnDate
+                    </td>
+                    <td>
+                        @item.flightSegments[1].airline
+                    </td>
+                    <td>
+                        @item.flightSegments[1].flightNumber
+                    </td>
+                    <td>
+                        @item.flightSegments[1].flightType
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<style>
+    table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    td, th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+    }
+
+    tr:nth-child(even) {
+        background-color: #dddddd;
+    }
+</style>
+<script>
+    $(document).ready(function () {
+
+        $("#myInput").on("click", function () {       
+      var value = $(".airlineCode").val().toLowerCase();
+      if (value != "") {
+          $("#myTable tr").filter(function () {
+              $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+          });
+      }
+      else {
+          alert("enterr eeRR");
+      }
+  });
+
+});
+</script>

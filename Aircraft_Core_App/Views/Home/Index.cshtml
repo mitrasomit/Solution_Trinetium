@@ -1,0 +1,21 @@
+﻿@model Aircraft_Core_App.Models.FlightFormModel
+@{
+    ViewData["Title"] = "Trinet-Airline";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome to Trinetium Airline App</h1>
+    <p>Learn about<a href="http://trinetium.com/">Trinetium</a>.</p>
+</div>
+<form asp-action="FlightSearch" asp-controller="Home">
+    <div>
+        <input asp-for="Origin" placeholder="Origin" />
+        <input asp-for="Designation" placeholder="Designation" />
+    </div>
+    <div>
+        <input asp-for="OnwardDate" type="date" placeholder="Enter Onward date" />
+        <input asp-for="ReturnDate" type="date" placeholder="Enter Return date" />
+    </div>
+
+    <button type="submit">Submit</button>
+</form>
